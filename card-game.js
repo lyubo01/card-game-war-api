@@ -27,11 +27,15 @@ let deckId = "";
            let player2Val = convertToNum(data.cards[1].value)
            if (player1Val > player2Val) {
             document.querySelector("h3").innerText = "Player 1 Wins"
+            document.querySelector("h3").style.color = "rgb(0, 68, 255)"
            }else if(player2Val > player1Val){
-            document.querySelector("h3").innerText = "Player 2 Wins"
+            document.querySelector("h3").innerText = "Player 2 Wins";
+            document.querySelector("h3").style.color = "rgb(136, 0, 0)";
             }
             else{
+                
                 document.querySelector("h3").innerText = "WAR!"
+
             }
            
         }

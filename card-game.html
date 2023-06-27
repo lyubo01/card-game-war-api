@@ -11,10 +11,16 @@
     <h1>War Card Game</h1>
     
     <button type="button" name="button">Deal two cards</button>
-    <h2>Player 1</h2>
-    <img id="player1" src="" alt="no cards selected">
-    <h2>Player 2</h2>
-    <img id="player2" src="" alt="no cards selected">
+    <div class="players">
+    <h2 class="player1">Player 1 </h2>
+    <h2 class="player2">Player 2 </h2>
+    </div>
+<div class="cards">
+    
+    <img id="player1" src="" onerror="this.style.borderWidth=0" alt="no cards selected">
+    
+    <img id="player2" src="" onerror="this.style.borderWidth=0" alt="no cards selected">
+</div>
     <h3>Let's get ready to rumble!</h3>
     
     <script src="card-game.js"></script>

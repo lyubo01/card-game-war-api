@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+body{ 
+    text-align: center;
+}
+button{
+    background-color: yellow;
+    width: 200px;
+    height: 60px;
+    font-size: 25px;
+}
+.player1{
+    color: rgb(0, 68, 255);
+    font-size: 50px;
+}
+.player2{
+ color: rgb(136, 0, 0);
+ font-size: 50px;
+}
+#player1{
+    border: 3px solid rgb(0, 68, 255); 
+    
+}
+#player2{
+    border: 3px solid rgb(136, 0, 0); 
+}
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.players{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+h2{
+    padding: 0 5%;
+}
+img{
+    margin: 0 5%;
+}
+h1{
+    font-size: 75px;
+}
+h3{
+    font-size: 60px;
+    margin-top:5%;
+}
