@@ -1,4 +1,8 @@
 let deckId = "";
+// win/war counters (persisted for the session only)
+let p1Wins = 0;
+let p2Wins = 0;
+let warCount = 0;
 
     fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
     .then(res => res.json())
@@ -13,6 +17,12 @@ let deckId = "";
     });
 
     document.querySelector("button").addEventListener('click', drawTwo)
+// reset button (added in HTML)
+const resetBtn = document.getElementById('reset-scores');
+if (resetBtn) resetBtn.addEventListener('click', resetScores);
+
+// initialize counters from sessionStorage and update UI
+initCounters();
 
     function drawTwo() {
         
@@ -28,13 +38,19 @@ let deckId = "";
            if (player1Val > player2Val) {
             document.querySelector("h3").innerText = "Player 1 Wins"
             document.querySelector("h3").style.color = "rgb(0, 68, 255)"
+            p1Wins += 1;
+            saveAndRenderCounters();
            }else if(player2Val > player1Val){
             document.querySelector("h3").innerText = "Player 2 Wins";
             document.querySelector("h3").style.color = "rgb(136, 0, 0)";
+            p2Wins += 1;
+            saveAndRenderCounters();
             }
             else{
                 
                 document.querySelector("h3").innerText = "WAR!"
+                warCount += 1;
+                saveAndRenderCounters();
 
             }
            
@@ -59,6 +75,37 @@ let deckId = "";
             return 11;
         }
         else{
-            return val;
+            return Number(val);
         }
     }
+
+function initCounters(){
+    const p1 = sessionStorage.getItem('p1Wins');
+    const p2 = sessionStorage.getItem('p2Wins');
+    const w = sessionStorage.getItem('warCount');
+    p1Wins = p1 ? Number(p1) : 0;
+    p2Wins = p2 ? Number(p2) : 0;
+    warCount = w ? Number(w) : 0;
+    renderCounters();
+}
+
+function saveAndRenderCounters(){
+    sessionStorage.setItem('p1Wins', String(p1Wins));
+    sessionStorage.setItem('p2Wins', String(p2Wins));
+    sessionStorage.setItem('warCount', String(warCount));
+    renderCounters();
+}
+
+function renderCounters(){
+    const el1 = document.getElementById('p1-wins');
+    const el2 = document.getElementById('p2-wins');
+    const elW = document.getElementById('war-count');
+    if (el1) el1.innerText = p1Wins;
+    if (el2) el2.innerText = p2Wins;
+    if (elW) elW.innerText = warCount;
+}
+
+function resetScores(){
+    p1Wins = 0; p2Wins = 0; warCount = 0;
+    saveAndRenderCounters();
+}
